@@ -29,11 +29,13 @@ pub use crate::auto::*;
 #[cfg(feature = "serde")]
 mod flag_serde;
 
+pub mod builders;
 pub mod rtsp_auth_credential;
 pub mod rtsp_connection;
 pub mod rtsp_message;
 pub mod rtsp_transport;
 
+pub use crate::builders::{RTSPConnectionBuilder, RTSPTransportBuilder};
 pub use crate::rtsp_connection::RTSPConnection;
 pub use crate::rtsp_transport::{RTSPRange, RTSPTransport};
 
@@ -42,6 +44,8 @@ pub use crate::rtsp_transport::{RTSPRange, RTSPTransport};
 pub mod prelude {
     #[doc(hidden)]
     pub use gst_sdp::prelude::*;
+
+    pub use crate::builders::{helpers, RTSPConnectionBuilder, RTSPTransportBuilder};
 }
 
 pub fn init() -> Result<(), glib::Error> {

@@ -21,8 +21,8 @@ impl RTSPRange {
 impl From<ffi::GstRTSPRange> for RTSPRange {
     fn from(range: ffi::GstRTSPRange) -> Self {
         RTSPRange {
-            min: range.min as i32,
-            max: range.max as i32,
+            min: range.min,
+            max: range.max,
         }
     }
 }
