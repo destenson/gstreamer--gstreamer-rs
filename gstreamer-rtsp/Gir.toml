@@ -88,6 +88,10 @@ status = "generate"
     ignore = true
 
 [[object]]
+name = "GstRtsp.RTSPTransport"
+status = "manual"
+
+[[object]]
 name = "GstRtsp.RTSPUrl"
 status = "generate"
 concurrency = "send"
