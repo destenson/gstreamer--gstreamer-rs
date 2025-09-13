@@ -30,9 +30,11 @@ pub use crate::auto::*;
 mod flag_serde;
 
 pub mod rtsp_auth_credential;
+pub mod rtsp_connection;
 pub mod rtsp_message;
 pub mod rtsp_transport;
 
+pub use crate::rtsp_connection::RTSPConnection;
 pub use crate::rtsp_transport::{RTSPRange, RTSPTransport};
 
 // Re-export all the traits in a prelude module, so that applications
@@ -40,4 +42,8 @@ pub use crate::rtsp_transport::{RTSPRange, RTSPTransport};
 pub mod prelude {
     #[doc(hidden)]
     pub use gst_sdp::prelude::*;
+}
+
+pub fn init() -> Result<(), glib::Error> {
+    gst::init()
 }

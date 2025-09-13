@@ -1488,6 +1488,7 @@ dependencies = [
 name = "gstreamer-rtsp"
 version = "0.25.0"
 dependencies = [
+ "gio",
  "gir-format-check",
  "glib",
  "gstreamer",

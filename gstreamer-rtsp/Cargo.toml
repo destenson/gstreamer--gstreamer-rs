@@ -17,6 +17,7 @@ rust-version.workspace = true
 libc = "0.2"
 gstreamer-rtsp-sys.workspace = true
 glib.workspace = true
+gio.workspace = true
 gst.workspace = true
 gst-sdp.workspace = true
 serde = { version = "1.0", optional = true }
