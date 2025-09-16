@@ -29,10 +29,73 @@ pub use crate::auto::*;
 #[cfg(feature = "serde")]
 mod flag_serde;
 
+/// Builder patterns for constructing RTSP connections and transports
+/// 
+/// This module provides convenient builder APIs for creating and configuring
+/// RTSP connections and transports with a fluent interface.
+/// 
+/// # Examples
+/// 
+/// ```no_run
+/// use gstreamer_rtsp::builders::RTSPConnectionBuilder;
+/// 
+/// # fn example() -> Result<(), Box<dyn std::error::Error>> {
+/// let conn = RTSPConnectionBuilder::new("rtsp://localhost:554/test")?
+///     .auth(gstreamer_rtsp::RTSPAuthMethod::Basic, "user", "pass")
+///     .proxy("proxy.example.com", 8080)
+///     .build()?;
+/// # Ok(())
+/// # }
+/// ```
 pub mod builders;
+
+/// RTSP authentication credential handling
 pub mod rtsp_auth_credential;
+
+/// RTSP connection management
+/// 
+/// This module provides the RTSPConnection type for establishing and managing
+/// RTSP connections to servers. It supports various features including
+/// authentication, proxies, TLS, and HTTP tunneling.
+/// 
+/// # Examples
+/// 
+/// ```no_run
+/// use gstreamer_rtsp::{RTSPConnection, RTSPUrl};
+/// 
+/// # fn example() -> Result<(), Box<dyn std::error::Error>> {
+/// let (result, url) = RTSPUrl::parse("rtsp://localhost:554/test");
+/// let url = url.unwrap();
+/// let conn = RTSPConnection::create(&url)?;
+/// # Ok(())
+/// # }
+/// ```
 pub mod rtsp_connection;
+
+/// RTSP message creation and manipulation
+/// 
+/// This module provides types for creating and working with RTSP request
+/// and response messages, including headers and body content.
 pub mod rtsp_message;
+
+/// RTSP transport configuration
+/// 
+/// This module provides the RTSPTransport type for configuring media
+/// transport parameters including protocols, profiles, ports, and modes.
+/// 
+/// # Examples
+/// 
+/// ```no_run
+/// use gstreamer_rtsp::{RTSPTransport, RTSPTransMode, RTSPProfile, RTSPLowerTrans};
+/// 
+/// # fn example() -> Result<(), Box<dyn std::error::Error>> {
+/// let mut transport = RTSPTransport::new()?;
+/// transport.set_trans(RTSPTransMode::RTP);
+/// transport.set_profile(RTSPProfile::AVP);
+/// transport.set_lower_transport(RTSPLowerTrans::UDP);
+/// # Ok(())
+/// # }
+/// ```
 pub mod rtsp_transport;
 
 pub use crate::builders::{RTSPConnectionBuilder, RTSPTransportBuilder};
